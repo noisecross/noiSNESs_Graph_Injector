@@ -1,9 +1,0 @@
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\bin\Release\noiSNESs_Graph_Injector.exe
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\bin\Release\noiSNESs_Graph_Injector.pdb
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.Form1.resources
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.FormExportDialog.resources
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.Properties.Resources.resources
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.csproj.GenerateResource.Cache
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.exe
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.pdb
-C:\Users\Elvira\Desktop\Último Socle v6\02-Interés\Preligion\perversereligion_proyecto\noiSNESs_Graph_Injector\noiSNESs_Graph_Injector\obj\x86\Release\noiSNESs_Graph_Injector.csprojResolveAssemblyReference.cache
