@@ -2,12 +2,12 @@
 * |------------------------------------------|
 * | noiSNESs_Graph_Injector                  |
 * | File: Form1.cs                           |
-* | v1.02, September 2016                    |
+* | v1.03, November 2020                     |
 * | Author: noisecross                       |
 * |------------------------------------------|
 * 
 * @author noisecross
-* @version 1.02
+* @version 1.03
 * 
 */
 
@@ -96,7 +96,7 @@ namespace noiSNESs_Graph_Injector
         {
             /* Displays an OpenFileDialog so the user can select a res */
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "SMC File|*.smc";
+            openFileDialog.Filter = "SMC File|*.smc|All files (*.*)|*.*";
             openFileDialog.Title  = "Choose a SMC file";
 
             /* Show the Dialog */
@@ -115,7 +115,7 @@ namespace noiSNESs_Graph_Injector
 
                     try
                     {
-                        int i = 0;
+                        //int i = 0;
 
                         br.BaseStream.Position = 0;
                         //toolStripProgressBar.Maximum = 1 + (int)br.BaseStream.Length / 128;
@@ -156,7 +156,7 @@ namespace noiSNESs_Graph_Injector
         {    
             /* Displays an OpenFileDialog so the user can select a res */
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "SMC File|*.smc";
+            saveFileDialog.Filter = "SMC File|*.smc|All files (*.*)|*.*";
             saveFileDialog.Title = "Choose a SMC file";
 
             /* Show the Dialog */
@@ -249,54 +249,36 @@ namespace noiSNESs_Graph_Injector
                     break;
                 case 1:
                     /* 2bpp */
-                    newIndex  = addressShown / Constants.PAGESIZE_2b;
+                case 2:
+                    /* 2bpp(NES) */
+                    newIndex = addressShown / Constants.PAGESIZE_2b;
                     newOffset = addressShown - (newIndex * Constants.PAGESIZE_2b);
                     nPages = currentFileSize / Constants.PAGESIZE_2b;
                     currentPallette = Palettes.palette2b;
                     break;
-                case 2:
+                case 3:
                     /* 3bpp */
                     newIndex  = addressShown / Constants.PAGESIZE_3b;
                     newOffset = addressShown - (newIndex * Constants.PAGESIZE_3b);
                     nPages = currentFileSize / Constants.PAGESIZE_3b;
                     currentPallette = Palettes.palette3b;
                     break;
-                case 3:
-                    /* 4bpp */
-                    newIndex  = addressShown / Constants.PAGESIZE_4b;
-                    newOffset = addressShown - (newIndex * Constants.PAGESIZE_4b);
-                    nPages = currentFileSize / Constants.PAGESIZE_4b;
-                    currentPallette = Palettes.palette4b;
-                    break;
                 case 4:
+                    /* 4bpp */
+                case 5:
                     /* 4bpp(Interleaved FX) */
                     newIndex  = addressShown / Constants.PAGESIZE_4b;
                     newOffset = addressShown - (newIndex * Constants.PAGESIZE_4b);
                     nPages = currentFileSize / Constants.PAGESIZE_4b;
                     currentPallette = Palettes.palette4b;
                     break;
-                case 5:
-                    /* 8bpp */
-                    newIndex  = addressShown / Constants.PAGESIZE_8b;
-                    newOffset = addressShown - (newIndex * Constants.PAGESIZE_8b);
-                    nPages = currentFileSize / Constants.PAGESIZE_8b;
-                    currentPallette = Palettes.palette8b;
-                    break;
                 case 6:
-                    /* 8bpp(M7) */
-                    newIndex  = addressShown / Constants.PAGESIZE_8b;
-                    newOffset = addressShown - (newIndex * Constants.PAGESIZE_8b);
-                    nPages = currentFileSize / Constants.PAGESIZE_8b;
-                    currentPallette = Palettes.palette8b;
-                    break;
+                    /* 8bpp */
                 case 7:
-                    /* 8bpp(M7 pre) */
-                    newIndex = addressShown / Constants.PAGESIZE_8b;
-                    newOffset = addressShown - (newIndex * Constants.PAGESIZE_8b);
-                    nPages = currentFileSize / Constants.PAGESIZE_8b;
-                    currentPallette = Palettes.palette8b;
-                    break;
+                    /* 8bpp(M7) */
                 case 8:
+                    /* 8bpp(M7 pre) */
+                case 9:
                     /* 8bpp(M7 pos) */
                     newIndex = addressShown / Constants.PAGESIZE_8b;
                     newOffset = addressShown - (newIndex * Constants.PAGESIZE_8b);
@@ -350,39 +332,45 @@ namespace noiSNESs_Graph_Injector
                     currentPageMult = Constants.PAGESIZE_2b;
                     break;
                 case 2:
+                    /* 2bbp(NES) */
+                    bitmap = Transformations.transform2bNES(byteList, page, offset,
+                        tileSizeX, tileSizeY, (size != 0) ? size : Constants.PAGESIZE_2b);
+                    currentPageMult = Constants.PAGESIZE_2b;
+                    break;
+                case 3:
                     /* 3bbp */
                     bitmap = Transformations.transform3b(byteList, page, offset,
                         tileSizeX, tileSizeY, (size != 0) ? size : Constants.PAGESIZE_3b);
                     currentPageMult = Constants.PAGESIZE_3b;
                     break;
-                case 3:
+                case 4:
                     /* 4bbp */
                     bitmap = Transformations.transform4b(byteList, page, offset,
                         tileSizeX, tileSizeY, (size != 0) ? size : Constants.PAGESIZE_4b);
                     currentPageMult = Constants.PAGESIZE_4b;
                     break;
-                case 4:
+                case 5:
                     /* 4bbp (Interleaved FX) */
                     bitmap = Transformations.transform4bIFX(byteList, page, offset);
                     currentPageMult = Constants.PAGESIZE_4b;
                     break;
-                case 5:
+                case 6:
                     /* 8bbp */
                     bitmap = Transformations.transform8b(byteList, page, offset,
                         tileSizeX, tileSizeY, (size != 0) ? size : Constants.PAGESIZE_8b);
                     currentPageMult = Constants.PAGESIZE_8b;
                     break;
-                case 6:
+                case 7:
                     /*8bbp(M7)*/
                     bitmap = Transformations.transform8bM7(byteList, page, offset);
                     currentPageMult = Constants.PAGESIZE_8b;
                     break;
-                case 7:
+                case 8:
                     /*8bbp(M7 tilemap)*/
                     bitmap = Transformations.transform8bM7_2(byteList, page, offset);
                     currentPageMult = Constants.PAGESIZE_8b;
                     break;
-                case 8:
+                case 9:
                     /*8bbp(M7 tileset)*/
                     bitmap = Transformations.transform8bM7(byteList, page, offset, 1, 0);
                     currentPageMult = Constants.PAGESIZE_8b;
@@ -563,7 +551,6 @@ namespace noiSNESs_Graph_Injector
             }
             saveFileDialog.Dispose();
             saveFileDialog = null;
-
         }
 
 
@@ -605,6 +592,7 @@ namespace noiSNESs_Graph_Injector
                         List<byte> newBytes;
                         int        nColumns = (int)Math.Truncate(128.0 / tileSizeX);
 
+                        bool arrayNeedsRefreshment = true;
                         switch (comboBoxMode.SelectedIndex)
                         {
                             case 0:
@@ -618,26 +606,38 @@ namespace noiSNESs_Graph_Injector
                                 newBytes = InvertingTransformations.import2bpp(bitmapPixels, tileSizeX, tileSizeY, size);
                                 break;
                             case 2:
+                                /* 2bbp(NES) */
+                                size = size - (size % ((tileSizeX * nColumns) * tileSizeY));
+                                newBytes = InvertingTransformations.import2bppNES(bitmapPixels, tileSizeX, tileSizeY, size);
+                                arrayNeedsRefreshment = false;
+                                for (int i = 0; i < newBytes.Count; i++)
+                                {
+                                    if (addressShown + i >= byteList.Count)
+                                        break;
+                                    byteList[addressShown + i + 16] = newBytes[i];
+                                }
+                                break;
+                            case 3:
                                 /* 3bbp */
                                 size = size - (size % ((tileSizeX * nColumns) * tileSizeY));
                                 newBytes = InvertingTransformations.import3bpp(bitmapPixels, tileSizeX, tileSizeY, size);
                                 break;
-                            case 3:
+                            case 4:
                                 /* 4bbp */
                                 size = size - (size % ((tileSizeX * nColumns) * tileSizeY));
                                 newBytes = InvertingTransformations.import4bpp(bitmapPixels, tileSizeX, tileSizeY, size);
                                 break;
-                            case 4:
+                            case 5:
                                 /* 4bbp (Interleaved FX) */
                                 size = size - (size % (128 * 128));
                                 newBytes = InvertingTransformations.import4bIFX(bitmapPixels);
                                 break;
-                            case 5:
+                            case 6:
                                 /* 8bbp */
                                 size = size - (size % ((tileSizeX * nColumns) * tileSizeY));
                                 newBytes = InvertingTransformations.import8bpp(bitmapPixels, tileSizeX, tileSizeY, size);
                                 break;
-                            case 6:
+                            case 7:
                                 /*8bbp(M7)*/
                                 size = size - (size % (128 * 128));
                                 newBytes = InvertingTransformations.import8bM7(bitmapPixels);
@@ -647,11 +647,15 @@ namespace noiSNESs_Graph_Injector
                                 break;
                         }
 
-                        for (int i = 0; i < newBytes.Count; i++)
+                        if (arrayNeedsRefreshment)
                         {
-                            if (addressShown + i >= byteList.Count)
-                                break;
-                            byteList[addressShown + i] = newBytes[i];
+                            for (int i = 0; i < newBytes.Count; i++)
+                            {
+                                if (addressShown + i >= byteList.Count)
+                                    break;
+
+                                byteList[addressShown + i] = newBytes[i];
+                            }
                         }
 
                         Form1.ActiveForm.Text = windowName + " - " + currentFileName + "*";

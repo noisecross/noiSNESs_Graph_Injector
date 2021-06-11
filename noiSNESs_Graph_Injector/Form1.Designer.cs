@@ -40,6 +40,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
             this.comboBoxMode = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.numericUpDownOffset = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOffset)).BeginInit();
@@ -60,12 +60,14 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(702, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1053, 35);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -81,58 +83,58 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.openToolStripMenuItem.Text = "Open ROM";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.saveToolStripMenuItem.Text = "Save ROM";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
             // 
             // exportBPMToolStripMenuItem
             // 
             this.exportBPMToolStripMenuItem.Name = "exportBPMToolStripMenuItem";
-            this.exportBPMToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exportBPMToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.exportBPMToolStripMenuItem.Text = "Export PNG";
             this.exportBPMToolStripMenuItem.Click += new System.EventHandler(this.exportBPMToolStripMenuItem_Click);
             // 
             // importPNGToolStripMenuItem
             // 
             this.importPNGToolStripMenuItem.Name = "importPNGToolStripMenuItem";
-            this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.importPNGToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.importPNGToolStripMenuItem.Text = "Import PNG";
             this.importPNGToolStripMenuItem.Click += new System.EventHandler(this.importPNGToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -141,16 +143,24 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 29);
             this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 30);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.Black;
             this.panelMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelMain.Location = new System.Drawing.Point(12, 27);
+            this.panelMain.Location = new System.Drawing.Point(18, 42);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(512, 512);
+            this.panelMain.Size = new System.Drawing.Size(768, 788);
             this.panelMain.TabIndex = 1;
             this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
@@ -161,6 +171,7 @@
             this.comboBoxMode.Items.AddRange(new object[] {
             "1bpp",
             "2bpp",
+            "2bpp(NES)",
             "3bpp",
             "4bpp",
             "4bpp(Interleaved FX)",
@@ -168,19 +179,21 @@
             "8bpp(M7)",
             "8bpp(M7_tilemap)",
             "8bpp(M7_tileset)"});
-            this.comboBoxMode.Location = new System.Drawing.Point(46, 99);
+            this.comboBoxMode.Location = new System.Drawing.Point(69, 152);
+            this.comboBoxMode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxMode.MaxDropDownItems = 24;
             this.comboBoxMode.Name = "comboBoxMode";
-            this.comboBoxMode.Size = new System.Drawing.Size(108, 21);
+            this.comboBoxMode.Size = new System.Drawing.Size(160, 28);
             this.comboBoxMode.TabIndex = 2;
             this.comboBoxMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxMode_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 48);
+            this.label1.Location = new System.Drawing.Point(9, 74);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Offset 0x";
             // 
@@ -188,19 +201,21 @@
             // 
             this.comboBoxPage.DisplayMember = "1";
             this.comboBoxPage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPage.Location = new System.Drawing.Point(44, 19);
+            this.comboBoxPage.Location = new System.Drawing.Point(66, 29);
+            this.comboBoxPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxPage.MaxDropDownItems = 24;
             this.comboBoxPage.Name = "comboBoxPage";
-            this.comboBoxPage.Size = new System.Drawing.Size(110, 21);
+            this.comboBoxPage.Size = new System.Drawing.Size(163, 28);
             this.comboBoxPage.TabIndex = 5;
             this.comboBoxPage.SelectedIndexChanged += new System.EventHandler(this.comboBoxPage_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Location = new System.Drawing.Point(9, 34);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(46, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Page";
             // 
@@ -218,28 +233,31 @@
             "16x8",
             "16x12",
             "16x16"});
-            this.comboBoxTileSize.Location = new System.Drawing.Point(57, 72);
+            this.comboBoxTileSize.Location = new System.Drawing.Point(86, 111);
+            this.comboBoxTileSize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxTileSize.MaxDropDownItems = 24;
             this.comboBoxTileSize.Name = "comboBoxTileSize";
-            this.comboBoxTileSize.Size = new System.Drawing.Size(97, 21);
+            this.comboBoxTileSize.Size = new System.Drawing.Size(144, 28);
             this.comboBoxTileSize.TabIndex = 7;
             this.comboBoxTileSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxTileSize_SelectedIndexChanged);
             // 
             // labelInitOffset
             // 
             this.labelInitOffset.AutoSize = true;
-            this.labelInitOffset.Location = new System.Drawing.Point(530, 27);
+            this.labelInitOffset.Location = new System.Drawing.Point(795, 42);
+            this.labelInitOffset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelInitOffset.Name = "labelInitOffset";
-            this.labelInitOffset.Size = new System.Drawing.Size(54, 13);
+            this.labelInitOffset.Size = new System.Drawing.Size(79, 20);
             this.labelInitOffset.TabIndex = 8;
             this.labelInitOffset.Text = "0x000000";
             // 
             // labelEndOffset
             // 
             this.labelEndOffset.AutoSize = true;
-            this.labelEndOffset.Location = new System.Drawing.Point(530, 526);
+            this.labelEndOffset.Location = new System.Drawing.Point(795, 809);
+            this.labelEndOffset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEndOffset.Name = "labelEndOffset";
-            this.labelEndOffset.Size = new System.Drawing.Size(54, 13);
+            this.labelEndOffset.Size = new System.Drawing.Size(79, 20);
             this.labelEndOffset.TabIndex = 9;
             this.labelEndOffset.Text = "0x000000";
             // 
@@ -253,9 +271,11 @@
             this.groupBox1.Controls.Add(this.comboBoxMode);
             this.groupBox1.Controls.Add(this.comboBoxPage);
             this.groupBox1.Controls.Add(this.comboBoxTileSize);
-            this.groupBox1.Location = new System.Drawing.Point(530, 397);
+            this.groupBox1.Location = new System.Drawing.Point(795, 611);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(160, 126);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(240, 194);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Visualize";
@@ -263,47 +283,43 @@
             // numericUpDownOffset
             // 
             this.numericUpDownOffset.Hexadecimal = true;
-            this.numericUpDownOffset.Location = new System.Drawing.Point(61, 46);
+            this.numericUpDownOffset.Location = new System.Drawing.Point(92, 71);
+            this.numericUpDownOffset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDownOffset.Maximum = new decimal(new int[] {
             134217728,
             0,
             0,
             0});
             this.numericUpDownOffset.Name = "numericUpDownOffset";
-            this.numericUpDownOffset.Size = new System.Drawing.Size(93, 20);
+            this.numericUpDownOffset.Size = new System.Drawing.Size(140, 26);
             this.numericUpDownOffset.TabIndex = 11;
             this.numericUpDownOffset.ValueChanged += new System.EventHandler(this.numericUpDownOffset_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 102);
+            this.label4.Location = new System.Drawing.Point(9, 157);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 9;
             this.label4.Text = "Mode";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 75);
+            this.label3.Location = new System.Drawing.Point(9, 115);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Tile size";
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 554);
+            this.ClientSize = new System.Drawing.Size(1053, 852);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelEndOffset);
             this.Controls.Add(this.labelInitOffset);
@@ -313,6 +329,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "noiSNESs_Graph_Injector";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);

@@ -248,6 +248,73 @@ namespace noiSNESs_Graph_Injector
 
 
 
+        public static System.Tuple<Bitmap, byte[,]> transform2bNES(List<byte> byteMap, int page, int offset, int widthX, int widthY, int size)
+        {
+            int maxY = (int)((size * 16 * 8) / Constants.PAGESIZE_2b);
+            Bitmap newBitmap = new Bitmap(16 * 8, maxY);
+            byte[,] outBytes = new byte[16 * 8, maxY];
+
+            int i = (page * Constants.PAGESIZE_2b) + offset + 16;
+            int end = i + size;
+
+            int x = 0;
+            int y = 0;
+            int cIndex = 0;
+
+            while (i < end)
+            {
+                for (int yi = 0; yi < 128 / widthY; yi++)
+                {
+                    if (i + 256 > byteMap.Count)
+                    {
+                        i = int.MaxValue;
+                        break;
+                    }
+
+                    /* Draw a line of tiles (2b,8x8) */
+                    for (int xi = 0; xi < 128 / widthX; xi++)
+                    {
+                        /* Draw a tile (2b,8x8) */
+                        for (int j = 0; j < widthY; j++)
+                        {
+                            if (i >= byteMap.Count - 1 || i >= end)
+                                return new System.Tuple<Bitmap, byte[,]>(newBitmap, outBytes); ;
+
+                            byte pixel2b_00 = byteMap[i];
+                            byte pixel2b_01 = byteMap[i + 8];
+                            i++;
+                            byte mask = 0x80;
+
+                            for (int k = 0; k < widthX; k++)
+                            {
+                                cIndex = ((pixel2b_00 & mask) == 0) ? 0 : 1;
+                                cIndex += ((pixel2b_01 & mask) == 0) ? 0 : 2;
+                                newBitmap.SetPixel(x, y, Palettes.palette2b[cIndex]);
+                                outBytes[x, y] = (byte)cIndex;
+                                x++;
+                                mask = (byte)(mask >> 1);
+                                if (mask == 0)
+                                    mask = 0x80;
+                            }
+                            x -= widthX;
+                            y++;
+
+                        }
+                        i += 8;
+                        x += widthX;
+                        y -= widthY;
+
+                    }
+                    x = 0;
+                    y += widthY;
+                }
+            }
+
+            return new System.Tuple<Bitmap, byte[,]>(newBitmap, outBytes); ;
+        }
+
+
+
         /*
         Verificado 8x8
         Zelda:	0x87201-Armas
@@ -664,6 +731,30 @@ namespace noiSNESs_Graph_Injector
 
             return new System.Tuple<Bitmap, byte[,]>(newBitmap, outBytes); ;
         }
+        /* ??? 8bpp2 */
+        public static System.Tuple<Bitmap, byte[,]> transform8bM72(List<byte> byteMap, int page, int offset)
+        {
+            Bitmap newBitmap = new Bitmap(16 * 8, 16 * 8);
+            byte[,] outBytes = new byte[16 * 8, 16 * 8];
+
+            int i = (page * Constants.PAGESIZE_8b) + offset;
+
+            /* Draw a 8bpp graphic */
+            for (int y0 = 0; y0 < 0x80; y0++) //128
+            {
+                for (int xi = 0; xi < 0x80; xi++) //128
+                {
+                    if (i >= byteMap.Count - 1)
+                        return new System.Tuple<Bitmap, byte[,]>(newBitmap, outBytes); ;
+
+                    int pixel = byteMap[i++];
+                    newBitmap.SetPixel(xi, y0 + 0, Palettes.palette8b[pixel]);
+                    outBytes[xi, y0 + 0] = (byte)pixel;
+                }
+            }
+
+            return new System.Tuple<Bitmap, byte[,]>(newBitmap, outBytes); ;
+        }
     }
 
 
@@ -784,6 +875,67 @@ namespace noiSNESs_Graph_Injector
                         }
                         x += widthX;
                         y -= widthY;
+                    }
+                    x = 0;
+                    y += widthY;
+                }
+
+            return output;
+        }
+
+
+
+        public static List<byte> import2bppNES(byte[] input, int widthX, int widthY, int size)
+        {
+            size = size / 4;
+
+            List<byte> output = new List<byte>(size);
+            for (int j = 0; j < size; j++)
+            {
+                output.Add(0);
+            }
+
+            /* Input is a pixel array. First 8 bytes represent the first output byte */
+            byte mask = 0x80;
+            byte pixel1b = 0;
+            int i = 0;
+            int x = 0;
+            int y = 0;
+
+            while (i < size) for (int yi = 0; yi < 128 / widthY; yi++)
+                {
+                    /* Draw a line of tiles (1b) */
+                    for (int xi = 0; xi < 128 / widthX; xi++)
+                    {
+
+                        /* Draw a tile (1b) */
+                        for (int j = 0; j < widthY; j++)
+                        {
+                            if (i >= size)
+                                return output;
+
+                            mask = 0x80;
+
+                            for (int k = 0; k < widthX; k++)
+                            {
+                                pixel1b = input[(x + y * 128)];
+                                output[i] += (byte)((pixel1b & 0x01) * mask);
+                                output[i + 8] += (byte)(((pixel1b & 0x02) >> 1) * mask);
+
+                                mask = (byte)(mask >> 1);
+                                if (mask == 0)
+                                    mask = 0x80;
+
+                                x++;
+                            }
+
+                            x -= widthX;
+                            y++;
+                            i++; //Next byte
+                        }
+                        x += widthX;
+                        y -= widthY;
+                        i += 8;
                     }
                     x = 0;
                     y += widthY;
@@ -1095,8 +1247,5 @@ namespace noiSNESs_Graph_Injector
 
             return output;
         }
-
-
-
     }
 } 
